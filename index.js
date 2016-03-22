@@ -583,10 +583,12 @@ Auth0.prototype.changePassword = function (options, callback) {
     client_id:      this._clientID,
     connection:     options.connection,
     username:       trim(options.username || ''),
-    email:          trim(options.email || options.username || ''),
-    password:       options.password
+    email:          trim(options.email || options.username || '')
   };
 
+  if (options.password != null) {
+    query.password = options.password;
+  }
 
   function fail (status, resp) {
     var error = new LoginError(status, resp);

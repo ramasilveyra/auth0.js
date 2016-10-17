@@ -2,7 +2,7 @@
  * Expose `required`
  */
 
-module.exports = required;
+export default required;
 
 /**
  * Assert `prop` as requirement of `obj`

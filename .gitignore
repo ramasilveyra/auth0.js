@@ -24,4 +24,5 @@ release
 .DS_Store
 
 build
+es5
 example/auth0.js

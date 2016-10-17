@@ -2,7 +2,7 @@
  * Check for same origin policy
  */
 
-module.exports = same_origin;
+export default same_origin;
 
 function same_origin (tprotocol, tdomain, tport) {
   var protocol = window.location.protocol;

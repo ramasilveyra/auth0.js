@@ -2,24 +2,25 @@
  * Module dependencies.
  */
 
-var Base64Url         = require('./lib/base64_url');
-var assert_required   = require('./lib/assert_required');
-var is_array          = require('./lib/is-array');
-var index_of          = require('./lib/index-of');
+import { encode, decode } from './lib/base64_url';
+import assert_required from './lib/assert_required';
+import is_array from './lib/is-array';
+import index_of from './lib/index-of';
 
-var qs                = require('qs');
-var xtend             = require('xtend');
-var trim              = require('trim');
-var reqwest           = require('reqwest');
-var WinChan           = require('winchan');
+import qs from 'qs';
+import xtend from 'xtend';
+import trim from 'trim';
+import reqwest from 'reqwest';
+import WinChan from 'winchan';
 
-var jsonp             = require('jsonp');
+import jsonp from 'jsonp';
 var jsonpOpts         = { param: 'cbx', timeout: 8000, prefix: '__auth0jp' };
 
-var same_origin       = require('./lib/same-origin');
-var json_parse        = require('./lib/json-parse');
-var LoginError        = require('./lib/LoginError');
-var use_jsonp         = require('./lib/use_jsonp');
+import same_origin from './lib/same-origin';
+import json_parse from './lib/json-parse';
+import LoginError from './lib/LoginError';
+import use_jsonp from './lib/use_jsonp';
+import version from './version';
 
 /**
  * Check if running in IE.
@@ -165,7 +166,7 @@ function Auth0 (options) {
  * @property {String} version
  */
 
-Auth0.version = require('./version').str;
+Auth0.version = version.str;
 
 /**
  * Export client info object
@@ -222,7 +223,7 @@ Auth0.prototype._getCallbackURL = function(options) {
 
 Auth0.prototype._getClientInfoString = function () {
   var clientInfo = JSON.stringify(Auth0.clientInfo);
-  return Base64Url.encode(clientInfo);
+  return encode(clientInfo);
 };
 
 Auth0.prototype._getClientInfoHeader = function () {
@@ -413,7 +414,7 @@ Auth0.prototype.validateUser = function (options, callback) {
 
 Auth0.prototype.decodeJwt = function (jwt) {
   var encoded = jwt && jwt.split('.')[1];
-  return json_parse(Base64Url.decode(encoded));
+  return json_parse(decode(encoded));
 };
 
 /**
@@ -2071,4 +2072,4 @@ function warn(str) {
  * Expose `Auth0` constructor
  */
 
-module.exports = Auth0;
+export default Auth0;

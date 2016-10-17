@@ -8,7 +8,7 @@ var toString = Object.prototype.toString;
  * Resolve `isArray` as native or fallback
  */
 
-module.exports = null != Array.isArray
+export default null != Array.isArray
   ? Array.isArray
   : isArray;
 

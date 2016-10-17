@@ -3,6 +3,6 @@
  * exists on `window`
  */
 
-module.exports = 'undefined' === typeof JSON
+export default 'undefined' === typeof JSON
   ? require('json-fallback').parse
   : JSON.parse;

@@ -40,25 +40,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    browserify: {
-      dist: {
-        files: {
-          'build/auth0.js': ['standalone.js'],
-        },
-        options: {
-          debug: true
-        }
-      }
-    },
-    uglify: {
-      options: {
-        ascii: true
-      }, min: {
-        files: {
-          'build/auth0.min.js': ['build/auth0.js']
-        }
-      }
-    },
     copy: {
       release: {
         files: [
@@ -69,15 +50,20 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      build: ["release/", "build/"],
+      build: ['release/', 'build/', 'es5/']
     },
     watch: {
       another: {
-        files: ['node_modules', 'standalone.js', 'index.js', 'lib/*.js'],
+        files: ['node_modules', 'src/*.js'],
         tasks: ['build']
       }
     },
     exec: {
+      build: {
+        cmd: 'npm run build',
+        stdout: true,
+        stderr: true
+      },
       'test-integration': {
         cmd: 'node_modules/.bin/zuul --concurrency 1 -- test/*.js',
         stdout: true,
@@ -173,7 +159,7 @@ module.exports = function(grunt) {
     if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
   }
 
-  grunt.registerTask("build",         ["clean", "browserify:dist", "uglify:min"]);
+  grunt.registerTask('build',         ['clean', 'exec:build']);
   grunt.registerTask("example",       ["build", "connect:example", "watch"]);
   grunt.registerTask("example_https", ["build", "connect:example_https", "watch"]);
 

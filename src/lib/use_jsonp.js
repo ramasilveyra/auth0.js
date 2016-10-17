@@ -2,7 +2,7 @@
  * Expose `use_jsonp`
  */
 
-module.exports = use_jsonp;
+export default use_jsonp;
 
 /**
  * Return true if `jsonp` is required

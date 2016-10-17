@@ -2,7 +2,7 @@
  * Resolve `isArray` as native or fallback
  */
 
-module.exports = Array.prototype.indexOf
+export default Array.prototype.indexOf
   ? nativeIndexOf
   : polyfillIndexOf;
 

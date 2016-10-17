@@ -2,13 +2,13 @@
  * Module dependencies.
  */
 
-var json_parse = require('./json-parse');
+import json_parse from './json-parse';
 
 /**
  * Expose `LoginError`
  */
 
-module.exports = LoginError;
+export default LoginError;
 
 /**
  * Create a `LoginError` by extend of `Error`

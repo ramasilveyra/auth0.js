@@ -2,16 +2,11 @@
  * Module dependencies.
  */
 
-var Base64 = require('Base64');
+import Base64 from 'Base64';
 
 /**
  * Expose `base64_url_decode`
  */
-
-module.exports = {
-  encode: encode,
-  decode: decode
-};
 
 /**
  * Encode a `base64` `encodeURIComponent` string
@@ -20,7 +15,7 @@ module.exports = {
  * @public
  */
 
-function encode(str) {
+export function encode(str) {
   return Base64.btoa(str)
       .replace(/\+/g, '-') // Convert '+' to '-'
       .replace(/\//g, '_') // Convert '/' to '_'
@@ -34,7 +29,7 @@ function encode(str) {
  * @public
  */
 
-function decode(str) {
+export function decode(str) {
   // Add removed at end '='
   str += Array(5 - str.length % 4).join('=');
 
